@@ -30,7 +30,24 @@ namespace PasswordEntry
         private void StringSendKeys(string data)
         {
             foreach (var c in data)
-                SendKeys.Send(c.ToString());
+            {
+                switch (c)
+                {
+                    case '+':
+                        SendKeys.Send("{+}");
+                        break;
+                    case '{':
+                        SendKeys.Send("{{}");
+                        break;
+                    case '}':
+                        SendKeys.Send("{}}");
+                        break;
+                    default:
+                        SendKeys.Send(c.ToString());
+                        break;
+                }
+                    
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
